@@ -18,16 +18,21 @@ RUN docker-php-ext-install pdo_mysql zip
 
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /app/vehicle
 
-COPY . /app/
-COPY .env /app/
+COPY . /app/vehicle//
+COPY .env /app/vehicle//
 
 # Install project dependencies
 RUN composer install
 
 # Expose port 
-EXPOSE 8002
+EXPOSE 8000
 
 # start app 
-CMD ["php", "artisan", "serve", "--port=8001", "--host=0.0.0.0"]
+# Copy startup script
+COPY startup.sh /app/driver/startup.sh
+RUN chmod +x /app/driver/startup.sh
+
+# start app
+CMD ["/app/driver/startup.sh"]
