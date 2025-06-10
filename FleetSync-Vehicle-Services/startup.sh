@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Running driver service migrations.."
+echo "Running vehicle service migrations.."
 cd /app/vehicle
 php artisan migrate
 
